@@ -22,10 +22,17 @@ function App() {
     setQuestions([...questions, newQuestion]);
   }
 
+  //callback function to pass as prop to QuestionList and then drill down to QuestionItem in order to delete a question from state
+  function handleDeleteQuestion(deletedQuestion){
+    console.log("Deleted question: ", deletedQuestion);
+    const updatedQuestions = questions.filter(question => question.id !== deletedQuestion.id);
+    setQuestions(updatedQuestions);
+  }
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm onAddQuestion={handleAddQuestion}/> : <QuestionList questions={questions}/>}
+      {page === "Form" ? <QuestionForm onAddQuestion={handleAddQuestion}/> : <QuestionList questions={questions} onDeleteQuestion={handleDeleteQuestion}/>}
     </main>
   );
 }

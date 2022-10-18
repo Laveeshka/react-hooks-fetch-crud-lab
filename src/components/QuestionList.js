@@ -1,9 +1,9 @@
 import QuestionItem from "./QuestionItem";
 
-function QuestionList({ questions }) {
+function QuestionList({ questions, onDeleteQuestion }) {
 
 
-  const questionsLi =questions.map(question => <QuestionItem key={question.id} question={question}></QuestionItem>)
+  const questionsLi =questions.map(question => <QuestionItem key={question.id} question={question} onDeleteQuestion={onDeleteQuestion}></QuestionItem>)
 
   return (
     <section>
