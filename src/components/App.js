@@ -29,10 +29,23 @@ function App() {
     setQuestions(updatedQuestions);
   }
 
+  //callback function to pass as prop to QuestionList and then drill down to QuestionItem in order to update a question in state
+  function handleUpdateQuestion(updatedQuestion){
+    const updatedQuestions = questions.map(question => {
+      if (question.id === updatedQuestion.id){
+        return updatedQuestion;
+      }
+      else {
+        return question;
+      }
+    });
+    setQuestions(updatedQuestions);
+  }
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm onAddQuestion={handleAddQuestion}/> : <QuestionList questions={questions} onDeleteQuestion={handleDeleteQuestion}/>}
+      {page === "Form" ? <QuestionForm onAddQuestion={handleAddQuestion}/> : <QuestionList questions={questions} onDeleteQuestion={handleDeleteQuestion} onUpdateQuestion={handleUpdateQuestion}/>}
     </main>
   );
 }
